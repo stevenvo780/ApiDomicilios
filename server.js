@@ -11,6 +11,8 @@ app.use(cors());
 const swaggerUi = require("swagger-ui-express");
 const swaggerInfo = require("./swaggerInfo");
 app.set("secretKey", process.env.JWT || "CalveSecreta"); // Clave Secreta para nuestro JWT
+const configs = require('./config/configs')
+
 
 // Instancia de base de datos mongoDB con mongoose
 mongoose.connection.on(
@@ -18,8 +20,10 @@ mongoose.connection.on(
   console.error.bind(console, "Error de conexion en MongoDB"),
 );
 
+app.set('llave', configs.llave)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerInfo));
 // Para acceder a las rutas de peliculas hemos definido middleware para validar al usuario.
