@@ -21,7 +21,7 @@ const UserSchema = new Schema({
   fechaNacimiento: {
     type: Date,
     trim: true,
-    required: true,
+    //required: true,
   },
   tipoDocumento: {
     type: String,

@@ -20,7 +20,10 @@ module.exports = {
       },
       function (err, user) {
         console.log(user);
-        const token = jwt.sign({ id: user._id }, req.app.get("secretKey"), {
+        const payload = {
+          check:  true
+         };
+        const token = jwt.sign(payload, req.app.get('llave'), {
           expiresIn: "1h",
         });
         if (err) next(err);
