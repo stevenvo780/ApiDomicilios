@@ -1,10 +1,17 @@
-# Getting Started with Addresses API
+# API de busqueda de restaurantes con google maps en nodejs
 
-API Already
+## Deploy
 
-## Available Scripts
+$ npm install
 
-In the project directory, you should run:
+$ cp .env.example .env
 
-### `npm run dev`
-That's gonna execute the following command "next dev -p 4036". Or if you want, you can edit this port number into package.json scripts
+## Testing
+
+$ npm test
+
+## Uso
+
+$ npm start
+
+## Documentacion en la ruta /api-docs
