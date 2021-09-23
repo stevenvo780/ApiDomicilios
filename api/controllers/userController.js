@@ -7,6 +7,20 @@ const jwt = require("jsonwebtoken");
 
 // Controladores relacionados a los usuarios y la autenticacion
 module.exports = {
+  // Metodo para retornar todos los positionUsers registrados en la base de datos
+  getAll: function (req, res, next) {
+    userModel.find({}, function (err, users) {
+      if (err) {
+        next(err);
+      } else {
+        res.json({
+          status: "200",
+          message: "Users list found!!!",
+          data: { Users: users },
+        });
+      }
+    });
+  },
   // FIXME: Validar que no existe el usuario para poder crearlo
   create: function (req, res, next) {
     userModel.create(
