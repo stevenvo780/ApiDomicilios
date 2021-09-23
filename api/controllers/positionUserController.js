@@ -2,7 +2,6 @@ const PositionUser = require("../models/positionUserModel");
 module.exports = {
   // Metodo para la busqueda de positionUsers por ID
   getById: function (req, res, next) {
-    console.log(req.body);
     PositionUser.findById(req.params.positionUserId, function (err, positionUser) {
       if (err) {
         next(err);
@@ -10,7 +9,21 @@ module.exports = {
         res.json({
           status: "200",
           message: "PositionUser found!!!",
-          data: positionUsers,
+          data: positionUser,
+        });
+      }
+    });
+  },
+   // Metodo para la busqueda de positionUsers por ID de usuario
+   getByUser: function (req, res, next) {
+    PositionUser.find({ usuario: req.params.userId}, function (err, positionUser) {
+      if (err) {
+        next(err);
+      } else {
+        res.json({
+          status: "200",
+          message: "PositionUser found!!!",
+          data: positionUser,
         });
       }
     });
