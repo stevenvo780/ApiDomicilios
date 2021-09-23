@@ -20,6 +20,15 @@ module.exports = {
       },
       function (err, user) {
         console.log(user);
+        console.log(err);
+        if(err){
+          res.json({
+            status: 500,
+            message: err,
+            data: { user, token },
+          });
+          return;
+        }
         const token = jwt.sign({ id: user._id }, req.app.get("secretKey"), {
           expiresIn: "1h",
         });
