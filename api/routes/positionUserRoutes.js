@@ -30,7 +30,7 @@ const positionUser = require("../controllers/positionUserController");
  *                      position:
  *                        type: string
  *                        description: Posicion de un usuario.
- *                        example: { "lat": 1, "long":1, "z"}
+ *                        example: { "lat": 1, "long":1}
  *                      usuario:
  *                        type: string
  *                        description: Id de un usuario.
