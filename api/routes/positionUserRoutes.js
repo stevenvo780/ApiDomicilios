@@ -40,6 +40,47 @@ router.get("/", positionUser.getAll);
 
 /**
  @swagger
+ * /positionUser/{positionUserId}:
+ *   get:
+ *    summary: Devuelve un positionUser.
+ *    description: Retrieve a list of positionUser from JSONPlaceholder. Can be used to populate a list of fake positionUser when prototyping or testing an API.
+ *    parameters:
+ *       - in: path
+ *         positionUser: id
+ *         required: true
+ *         description: Numeric ID of the user to retrieve.
+ *         schema:
+ *           type: string
+ *    responses:
+ *      200:
+ *        description: A list of positionUser.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                data:
+ *                  type: object
+ *                  items:
+ *                    type: object
+ *                    properties:
+ *                      _id:
+ *                        type: integer
+ *                        description: Id de positionUser.
+ *                        example: 1
+ *                      position:
+ *                        type: string
+ *                        description: Posicion de un usuario.
+ *                        example: { "lat": 1, "long":1, "z"}
+ *                      usuario:
+ *                        type: string
+ *                        description: Id de un usuario.
+ *                        example: SÑAAS-FGT#$-%DGH$-&$ETG-%&GASD
+ */
+router.get("/user/:userId", positionUser.getByUser);
+
+/**
+ @swagger
  * /positionUser/{productosId}:
  *   get:
  *    summary: Devuelve un positionUser.
@@ -77,7 +118,7 @@ router.get("/", positionUser.getAll);
  *                        description: Id de un usuario.
  *                        example: SÑAAS-FGT#$-%DGH$-&$ETG-%&GASD
  */
-router.get("/:productosId", positionUser.getById);
+ router.get("/:positionUserId", positionUser.getById);
 
 /**
  * @swagger
@@ -180,7 +221,7 @@ router.post("/", positionUser.create);
  *                       description: Id de un usuario.
  *                       example: SÑAAS-FGT#$-%DGH$-&$ETG-%&GASD
  */
-router.put("/:productosId", positionUser.updateById);
+router.put("/:positionUserId", positionUser.updateById);
 
 /**
  @swagger
@@ -221,6 +262,6 @@ router.put("/:productosId", positionUser.updateById);
  *                        description: Caracteracteristicas del positionUser.
  *                        example: null
  */
-router.delete("/:productosId", positionUser.deleteById);
+router.delete("/:positionUserId", positionUser.deleteById);
 
 module.exports = router;

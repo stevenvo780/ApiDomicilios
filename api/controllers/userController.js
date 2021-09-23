@@ -7,6 +7,20 @@ const jwt = require("jsonwebtoken");
 
 // Controladores relacionados a los usuarios y la autenticacion
 module.exports = {
+  // Metodo para retornar todos los positionUsers registrados en la base de datos
+  getAll: function (req, res, next) {
+    userModel.find({}, function (err, users) {
+      if (err) {
+        next(err);
+      } else {
+        res.json({
+          status: "200",
+          message: "Users list found!!!",
+          data: { Users: users },
+        });
+      }
+    });
+  },
   // FIXME: Validar que no existe el usuario para poder crearlo
   create: function (req, res, next) {
     userModel.create(
@@ -20,16 +34,10 @@ module.exports = {
       },
       function (err, user) {
         console.log(user);
-        console.log(err);
-        if(err){
-          res.json({
-            status: 500,
-            message: err,
-            data: { user, token },
-          });
-          return;
-        }
-        const token = jwt.sign({ id: user._id }, req.app.get("secretKey"), {
+        const payload = {
+          check:  true
+         };
+        const token = jwt.sign(payload, req.app.get('llave'), {
           expiresIn: "1h",
         });
         if (err) next(err);
