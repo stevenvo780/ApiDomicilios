@@ -47,11 +47,14 @@ function private(req, res, next) {
 const positionUserRoutes = require("./api/routes/positionUserRoutes"); // Importar rutas de produtos
 const userPrivateRoutes = require("./api/routes/userPrivateRoutes"); // Importar rutas de usuarios
 const userPublicRoutes = require("./api/routes/userPublicRoutes"); // Importar rutas de usuarios
+const productRoutes = require('./api/routes/productRoutes') // Import product routes
 // Rutas privadas
 app.use("/position", private, positionUserRoutes);
 app.use("/users", userPrivateRoutes);
+app.use("/products", productRoutes)
 // Rutas publicas
 app.use("/users", userPublicRoutes);
+
 
 // Manejando errores HTTP 404 para solicitudes de contenido inexistente
 app.use(function (req, res, next) {
