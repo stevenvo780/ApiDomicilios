@@ -31,6 +31,7 @@ module.exports = {
         tipoDocumento: req.body.tipoDocumento,
         documentoIdentidad: req.body.documentoIdentidad,
         password: req.body.password,
+        //rol: req.body.rol
       },
       function (err, user) {
         console.log(user);
