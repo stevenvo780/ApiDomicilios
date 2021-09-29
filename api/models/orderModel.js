@@ -4,6 +4,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // Create schema object with their own necesary fields
 const OrderSchema = new Schema({
+  orderName: {
+    type: String,
+    trim: true,
+    required: true
+  },
   fecha: {
     type: Date,
     trim: true,
@@ -29,7 +34,13 @@ const OrderSchema = new Schema({
     trim: true,
     required: true,
   },
-});
+  remaining: {
+    type: Number,
+    trim: true,
+    required: true,
+  }
+}, {timestamps: true, versionKey: false,}
+);
 
 // We export model User for use in other files
 module.exports = mongoose.model("Order", OrderSchema);

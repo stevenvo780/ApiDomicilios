@@ -29,11 +29,13 @@ module.exports = {
     create: (req, res, next) => {
         orderModel.create(
             {
+                orderName: req.body.orderName,
                 fecha: req.body.fecha,
                 cliente: req.body.cliente,
                 domiciliario: req.body.domiciliario,
                 productos: req.body.productos,
                 direccion: req.body.direccion,
+                remaining: req.body.remaining
             },
             function (err, order) {
                 console.log(order);
