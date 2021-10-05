@@ -30,7 +30,7 @@ const OrderSchema = new Schema({
     required: true,
   },
   direccion: {
-    type: String,
+    type: Object,
     trim: true,
     required: true,
   },
