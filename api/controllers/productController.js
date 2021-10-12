@@ -9,13 +9,13 @@ module.exports = {
         productModel.find({}, (err, products) => {
             if (err) {
                 next(err);
-              } else {
+            } else {
                 res.json({
-                  status: "200",
-                  message: "Products list found!!!",
-                  data: { Products: products },
+                    status: "200",
+                    message: "Products list found!!!",
+                    data: { Products: products },
                 });
-              }
+            }
         })
     },
 
@@ -46,10 +46,6 @@ module.exports = {
 
     // Method for update any log in database for ID
     updateById: async function (req, res, next) {
-        const dataBody = {};
-        Object.keys(req.body).forEach((key) => {
-            dataBody[key] = req.body[key];
-        });
         // Update product
         productModel.findOneAndUpdate(
             req.params.productId,
@@ -69,10 +65,6 @@ module.exports = {
 
     // Method for delete any log in database for ID
     deleteById: async function (req, res, next) {
-        const dataBody = {};
-        Object.keys(req.body).forEach((key) => {
-            dataBody[key] = req.body[key];
-        });
         // Update product
         productModel.findOneAndDelete(
             req.params.productId,

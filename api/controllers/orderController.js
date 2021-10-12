@@ -53,10 +53,6 @@ module.exports = {
 
     // Method for update any log in database for ID
     updateById: async function (req, res, next) {
-        const dataBody = {};
-        Object.keys(req.body).forEach((key) => {
-            dataBody[key] = req.body[key];
-        });
         // Update product
         orderModel.findOneAndUpdate(
             req.params.orderId,
@@ -76,11 +72,7 @@ module.exports = {
 
     // Method for delete any log in database for ID
     deleteById: async function (req, res, next) {
-        const dataBody = {};
-        Object.keys(req.body).forEach((key) => {
-            dataBody[key] = req.body[key];
-        });
-        // Update product
+        // Delete One Order By Id
         orderModel.findOneAndDelete(
             req.params.orderId,
             function (err) {
