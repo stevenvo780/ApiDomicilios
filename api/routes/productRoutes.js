@@ -22,8 +22,7 @@ const productController = require("../controllers/productController");
  *        content:
  *          application/json:
  */
-router.post("/create", productController.create);
-
+router.post("/", productController.create);
 
 /**
  * @swagger
@@ -53,7 +52,7 @@ router.post("/create", productController.create);
  *               items:
  */
 
- router.put("/update/:productId", productController.updateById);
+router.put("/:productId", productController.updateById);
 
 /**
  * @swagger
@@ -83,39 +82,35 @@ router.post("/create", productController.create);
  *               items:
  */
 
- router.delete("/delete/:productId", productController.deleteById);
+router.delete("/:productId", productController.deleteById);
 
+/**
+ * @swagger
+ * /product/{productId}:
+ *   put:
+ *     summary: Update one Product
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: productId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Product Id
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *     responses:
+ *       200:
+ *         description: Product Updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               items:
+ */
 
-
-
- /**
-  * @swagger
-  * /product/{productId}:
-  *   put:
-  *     summary: Update one Product
-  *     tags: [Products]
-  *     parameters:
-  *       - in: path
-  *         name: productId
-  *         schema:
-  *           type: string
-  *         required: true
-  *         description: Product Id
-  *     requestBody:
-  *       required: true
-  *       content:
-  *         application/json:
-  *           schema:
-  *     responses:
-  *       200:
-  *         description: Product Updated
-  *         content:
-  *           application/json:
-  *             schema:
-  *               type: object
-  *               items:
-  */
-
-
- router.get("/", productController.getAll);
- module.exports = router;
+router.get("/", productController.getAll);
+module.exports = router;
