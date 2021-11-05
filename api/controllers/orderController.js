@@ -53,20 +53,18 @@ module.exports = {
   // Method for update any log in database for ID
   updateById: async function (req, res, next) {
     // Update product
-    orderModel.findOneAndUpdate(
-      req.params.orderId,
-      dataBody,
-      function (err, order) {
-        if (err) next(err);
-        else {
-          res.json({
-            status: "200",
-            message: "Order updated successfully!!!",
-            data: dataBody,
-          });
-        }
-      },
-    );
+    orderModel.updateOne(
+      { _id:req.params.orderId },
+      req.body
+    ).then( function (order) {
+      res.json({
+        status: "200",
+        message: "Order updated successfully!!!",
+        data: order,
+      });
+    }).catch(function (err) {
+      next(err);
+    });
   },
 
   // Method for delete any log in database for ID
