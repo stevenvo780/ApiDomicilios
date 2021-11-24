@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // Create schema object with their own necesary fields
 const ProductSchema = new Schema({
-    nombre: {
+  nombre: {
     type: String,
     trim: true,
     required: true,
@@ -14,26 +14,36 @@ const ProductSchema = new Schema({
     trim: true,
     required: true,
   },
-  caracteristicas: {
+  variedades: {
     type: String,
+    trim: true,
+    required: false,
+  },
+  precio: {
+    type: Object,
     trim: true,
     required: true,
   },
-  empresa: {
+  ocultar: {
     type: String,
+    trim: true,
+    required: false,
+  },
+  categoria: {
+    type: Object,
     trim: true,
     required: true,
   },
-  valorCU: {
-    type: String,
+  imagen: {
+    type: Object,
     trim: true,
     required: true,
   },
   user: {
     type: Object,
     trim: true,
-    required: true
-  }
+    required: true,
+  },
 });
 
 // We export model User for use in other files

@@ -18,15 +18,17 @@ module.exports = {
     });
   },
 
-  // FIXME: validate that do not exist the user for can create
+  // Method for create one product
   create: (req, res, next) => {
     productModel.create(
       {
         nombre: req.body.nombre,
         descripcion: req.body.descripcion,
-        caracteristicas: req.body.caracteristicas,
-        empresa: req.body.empresa,
-        valorCU: req.body.valorCU,
+        variedades: req.body.variedades,
+        precio: req.body.precio,
+        ocultar: req.body.ocultar,
+        categoria: req.body.categoria,
+        imagen: req.body.imagen,
         user: req.body.user,
       },
       function (err, product) {
@@ -36,14 +38,14 @@ module.exports = {
         else
           res.json({
             status: 200,
-            message: "Producto agregado exitosamente!!!",
+            message: "Product Added Succesfully!!!",
             data: { product },
           });
       },
     );
   },
 
-  // Method for update any log in database for ID
+  // Method for update any product in database for ID
   updateById: async function (req, res, next) {
     // Update product
     productModel

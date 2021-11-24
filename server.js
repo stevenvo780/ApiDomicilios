@@ -11,19 +11,17 @@ app.use(cors());
 const swaggerUi = require("swagger-ui-express");
 const swaggerInfo = require("./swaggerInfo");
 app.set("secretKey", process.env.JWT || "CalveSecreta"); // Clave Secreta para nuestro JWT
-const configs = require('./config/configs')
-
+const configs = require("./config/configs");
 
 // Instancia de base de datos mongoDB con mongoose
 mongoose.connection.on(
   "error",
-  console.error.bind(console, "Error de conexion en MongoDB"),
+  console.error.bind(console, "Error de conexion en MongoDB")
 );
 
-app.set('llave', configs.llave)
+app.set("llave", configs.llave);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerInfo));
 // Para acceder a las rutas de peliculas hemos definido middleware para validar al usuario.
@@ -47,16 +45,17 @@ function private(req, res, next) {
 const positionUserRoutes = require("./api/routes/positionUserRoutes"); // Importar rutas de produtos
 const userPrivateRoutes = require("./api/routes/userPrivateRoutes"); // Importar rutas de usuarios
 const userPublicRoutes = require("./api/routes/userPublicRoutes"); // Importar rutas de usuarios
-const productRoutes = require('./api/routes/productRoutes') // Import product routes
-const orderRoutes = require('./api/routes/orderRoutes')
+const productRoutes = require("./api/routes/productRoutes"); // Import product routes
+const categoryRoutes = require("./api/routes/categoryProduct"); //Import category product routes
+const orderRoutes = require("./api/routes/orderRoutes");
 // Rutas privadas
 app.use("/position", private, positionUserRoutes);
 app.use("/users", userPrivateRoutes);
-app.use("/products", productRoutes)
-app.use("/orders", orderRoutes)
+app.use("/products", productRoutes);
+app.use("/categoryProducts", categoryRoutes);
+app.use("/orders", orderRoutes);
 // Rutas publicas
 app.use("/users", userPublicRoutes);
-
 
 // Manejando errores HTTP 404 para solicitudes de contenido inexistente
 app.use(function (req, res, next) {
