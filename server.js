@@ -45,14 +45,10 @@ function private(req, res, next) {
 const positionUserRoutes = require("./api/routes/positionUserRoutes"); // Importar rutas de produtos
 const userPrivateRoutes = require("./api/routes/userPrivateRoutes"); // Importar rutas de usuarios
 const userPublicRoutes = require("./api/routes/userPublicRoutes"); // Importar rutas de usuarios
-const productRoutes = require("./api/routes/productRoutes"); // Import product routes
-const categoryRoutes = require("./api/routes/categoryProduct"); //Import category product routes
 const orderRoutes = require("./api/routes/orderRoutes");
 // Rutas privadas
 app.use("/position", private, positionUserRoutes);
 app.use("/users", userPrivateRoutes);
-app.use("/products", productRoutes);
-app.use("/categoryProducts", categoryRoutes);
 app.use("/orders", orderRoutes);
 // Rutas publicas
 app.use("/users", userPublicRoutes);

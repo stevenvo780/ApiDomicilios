@@ -1,6 +1,10 @@
 // Load model
 const orderModel = require("../models/orderModel");
 
+// UUID
+const { v4: uuidv4, v4 } = require('uuid');
+
+
 module.exports = {
   // Method to retur all orders stored in database
   getAll: function (req, res, next) {
@@ -28,13 +32,13 @@ module.exports = {
   create: (req, res, next) => {
     orderModel.create(
       {
-        orderName: req.body.orderName,
+        orderNumber: v4(),
         fecha: req.body.fecha,
         cliente: req.body.cliente,
         domiciliario: req.body.domiciliario,
-        productos: req.body.productos,
+        pedido: req.body.pedido,
         direccion: req.body.direccion,
-        remaining: req.body.remaining,
+        estado: req.body.estado,
       },
       function (err, order) {
         console.log(order);

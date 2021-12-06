@@ -41,8 +41,13 @@ const UserSchema = new Schema({
   rol: {
     type: String,
     trim: true,
-    default: "cliente"
-  }
+    default: "cliente",
+  },
+  googleSheets: {
+    type: Object,
+    trim: true,
+    required: false
+  },
 });
 // Antes de almacenar la contraseña en la base de datos la encriptamos con Bcrypt, esto es posible gracias al middleware de mongoose
 UserSchema.pre("save", function (next) {
