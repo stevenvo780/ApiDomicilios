@@ -31,14 +31,15 @@ module.exports = {
         tipoDocumento: req.body.tipoDocumento,
         documentoIdentidad: req.body.documentoIdentidad,
         password: req.body.password,
-        rol: req.body.rol
+        rol: req.body.rol,
+        googleSheets: req.body.googleSheets,
       },
       function (err, user) {
         console.log(user);
         const payload = {
-          check:  true
-         };
-        const token = jwt.sign(payload, req.app.get('llave'), {
+          check: true,
+        };
+        const token = jwt.sign(payload, req.app.get("llave"), {
           expiresIn: "1h",
         });
         if (err) next(err);
@@ -48,7 +49,7 @@ module.exports = {
             message: "Usuario agregado exitosamente!!!",
             data: { user, token },
           });
-      },
+      }
     );
   },
   authenticate: function (req, res, next) {
@@ -68,7 +69,7 @@ module.exports = {
             const token = jwt.sign(
               { id: userInfo._id },
               req.app.get("secretKey"),
-              { expiresIn: "1h" },
+              { expiresIn: "1h" }
             );
             res.json({
               status: 200,
@@ -83,7 +84,7 @@ module.exports = {
             });
           }
         }
-      },
+      }
     );
   },
   // Metodo para actualizar algun registro de la base de datos por ID
@@ -92,6 +93,7 @@ module.exports = {
     Object.keys(req.body).forEach((key) => {
       dataBody[key] = req.body[key];
     });
+    console.log("Databody", dataBody);
     if (dataBody.password) {
       // Actualizar hash de la contraseña
       dataBody.password = await bcrypt.hash(dataBody.password, 8);
@@ -100,22 +102,24 @@ module.exports = {
     userModel.findOneAndUpdate(
       req.params.userId,
       dataBody,
+      { upsert: true },
       function (err, user) {
         if (err) next(err);
         else {
+          console.log("What I get in the userId", req.params.userId);
           res.json({
             status: "200",
             message: "User updated successfully!!!",
             data: dataBody,
           });
         }
-      },
+      }
     );
   },
 
   // Method for send all clients registred
   getAllClients: function (req, res, next) {
-    userModel.find({ rol: 'cliente'}, function (err, clients) {
+    userModel.find({ rol: "cliente" }, function (err, clients) {
       if (err) {
         next(err);
       } else {
@@ -130,11 +134,11 @@ module.exports = {
 
   // Method for send all dealers registred
   getAllDomiciliarios: function (req, res, next) {
-    userModel.find({ rol: 'domiciliario'}, function (err, domiciliarios) {
+    userModel.find({ rol: "domiciliario" }, function (err, domiciliarios) {
       if (err) {
         next(err);
       } else {
-        if(domiciliarios.length > 0) {
+        if (domiciliarios.length > 0) {
           res.json({
             status: "200",
             message: "Domiciliarios list found!!!",
@@ -146,9 +150,7 @@ module.exports = {
             message: "Domiciliarios list not found!!!",
           });
         }
-        
       }
     });
   },
-
 };
