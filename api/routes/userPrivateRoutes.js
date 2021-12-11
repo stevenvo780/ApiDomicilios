@@ -62,4 +62,5 @@ router.put("/update/:userId", userController.updateById);
 router.get("/", userController.getAll);
 router.get("/clients", userController.getAllClients)
 router.get("/domiciliarios", userController.getAllDomiciliarios)
+router.post("/saveUrlPush/:userId", userController.saveUrlPush)
 module.exports = router;
