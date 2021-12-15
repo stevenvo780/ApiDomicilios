@@ -48,6 +48,10 @@ const UserSchema = new Schema({
     trim: true,
     required: false
   },
+  urlPush:{
+    type: String,
+    trim: true,
+  },
 });
 // Antes de almacenar la contraseña en la base de datos la encriptamos con Bcrypt, esto es posible gracias al middleware de mongoose
 UserSchema.pre("save", function (next) {
