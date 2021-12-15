@@ -49,7 +49,7 @@ const ordersToSheetsRoutes = require("./api/routes/ordersToGoogleSheetsRoutes");
 const orderRoutes = require("./api/routes/orderRoutes");
 // Rutas privadas
 app.use("/position", private, positionUserRoutes);
-app.use("/users", userPrivateRoutes);
+app.use("/users", private, userPrivateRoutes);
 app.use("/orders", orderRoutes);
 app.use("/ordersToSheets", ordersToSheetsRoutes);
 // Rutas publicas

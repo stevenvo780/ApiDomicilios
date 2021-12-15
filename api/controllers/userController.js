@@ -153,4 +153,27 @@ module.exports = {
       }
     });
   },
+  // Metodo para actualizar algun registro de la base de datos por ID
+  saveUrlPush: async function (req, res, next) {
+    const dataBody = {
+      urlPush: req.body.urlPush,
+    };
+    console.log(dataBody);
+    // Acualizar el usuario
+    userModel.findOneAndUpdate(
+      req.params.userId,
+      dataBody,
+      { upsert: true },
+      function (err, user) {
+        if (err) next(err);
+        else {
+          res.json({
+            status: "200",
+            message: "User updated successfully!!!",
+            data: user,
+          });
+        }
+      }
+    );
+  },
 };
