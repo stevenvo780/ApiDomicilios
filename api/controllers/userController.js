@@ -93,7 +93,6 @@ module.exports = {
     Object.keys(req.body).forEach((key) => {
       dataBody[key] = req.body[key];
     });
-    console.log("Databody", dataBody);
     if (dataBody.password) {
       // Actualizar hash de la contraseña
       dataBody.password = await bcrypt.hash(dataBody.password, 8);
@@ -106,7 +105,6 @@ module.exports = {
       function (err, user) {
         if (err) next(err);
         else {
-          console.log("What I get in the userId", req.params.userId);
           res.json({
             status: "200",
             message: "User updated successfully!!!",
