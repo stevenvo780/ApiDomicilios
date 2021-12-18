@@ -10,12 +10,47 @@ const OrderSchema = new Schema(
       trim: true,
       required: true,
     },
-    fecha: {
-      type: Date,
+    pedido: {
+      type: String,
       trim: true,
       required: true,
     },
-    cliente: {
+    nombresYApellidos: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    cedula: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    telefono: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    departamento: {
+      type: Object,
+      trim: true,
+      required: true,
+    },
+    ciudad: {
+      type: Object,
+      trim: true,
+      required: true,
+    },
+    direccion: {
+      type: Object,
+      trim: true,
+      required: true,
+    },
+    correoElectronico: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    metodoDePago: {
       type: Object,
       trim: true,
       required: true,
@@ -25,12 +60,12 @@ const OrderSchema = new Schema(
       trim: true,
       required: true,
     },
-    pedido: {
-      type: String,
+    fecha: {
+      type: Date,
       trim: true,
       required: true,
     },
-    direccion: {
+    cliente: {
       type: Object,
       trim: true,
       required: true,
