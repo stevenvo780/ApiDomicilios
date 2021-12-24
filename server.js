@@ -46,12 +46,14 @@ const positionUserRoutes = require("./api/routes/positionUserRoutes"); // Import
 const userPrivateRoutes = require("./api/routes/userPrivateRoutes"); // Importar rutas de usuarios
 const userPublicRoutes = require("./api/routes/userPublicRoutes"); // Importar rutas de usuarios
 const ordersToSheetsRoutes = require("./api/routes/ordersToGoogleSheetsRoutes");
+const sheetsOrdersRoutes = require("./api/routes/sheetsOrdersRoutes");
 const orderRoutes = require("./api/routes/orderRoutes");
 // Rutas privadas
 app.use("/position", positionUserRoutes);
 app.use("/users", userPrivateRoutes);
 app.use("/orders", orderRoutes);
 app.use("/ordersToSheets", ordersToSheetsRoutes);
+app.use("/sheetsOrders", sheetsOrdersRoutes);
 // Rutas publicas
 app.use("/users", userPublicRoutes);
 
