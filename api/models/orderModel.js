@@ -40,7 +40,12 @@ const OrderSchema = new Schema(
       trim: true,
       required: true,
     },
-    direccion: {
+    direccionRecogida: {
+      type: Object,
+      trim: true,
+      required: true,
+    },
+    direccionEntrega: {
       type: Object,
       trim: true,
       required: true,

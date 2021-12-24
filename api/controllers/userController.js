@@ -32,7 +32,6 @@ module.exports = {
         documentoIdentidad: req.body.documentoIdentidad,
         password: req.body.password,
         rol: req.body.rol,
-        googleSheets: req.body.googleSheets,
       },
       function (err, user) {
         console.log(user);
@@ -98,21 +97,18 @@ module.exports = {
       dataBody.password = await bcrypt.hash(dataBody.password, 8);
     }
     // Acualizar el usuario
-    userModel.findOneAndUpdate(
-      req.params.userId,
-      dataBody,
-      { upsert: true },
-      function (err, user) {
-        if (err) next(err);
-        else {
-          res.json({
-            status: "200",
-            message: "User updated successfully!!!",
-            data: dataBody,
-          });
-        }
-      }
-    );
+    userModel
+      .updateOne({ _id: req.params.userId }, dataBody)
+      .then((user) => {
+        res.json({
+          status: "200",
+          message: "User Update Successfully",
+          data: user,
+        });
+      })
+      .catch((err) => {
+        next(err);
+      });
   },
 
   // Method for send all clients registred
